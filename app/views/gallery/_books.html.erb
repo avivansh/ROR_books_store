@@ -1,0 +1,20 @@
+<table>
+
+<tr>
+<% count=0 %>
+<% @books.each do |book|%>
+
+<% if (count % 3) == 0%>
+</tr>
+<tr>
+<% end %>
+<% count+=1 %>
+<td><%= image_tag book.product_image ,:height=>"100",:width=>"100" %><br />
+Name : <%= book.name %><br />
+Color :<%= book.author %><br />
+Size : <%= book.about %><br />
+Price : <%= book.price %>
+<%= button_to 'Add to Cart', line_items_path(:store_id => book.id)%> </td>
+<% end %>
+</tr>
+</table>

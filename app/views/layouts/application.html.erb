@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <p class="navbar-text">
+      
+    </p>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <div id="templatemo_container">
+  <div id="templatemo_menu">
+      <ul>
+            <li><a href="/gallery/index" class="current">Home</a></li>
+            <% if session[:admin]%>
+              Welcome admin
+              <li><a href="/admin/logout"> Logout</a></li>
+                  <% else %>
+                <li><a href="/admin/login">Admin Login</a></li>
+            <% end %>
+
+            <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.email %></strong>.
+        <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'%></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+      <% else %>
+       <li> <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
+       <li> <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+      <% end %>
+      </ul>
+    </div> <!-- end of menu -->
+    
+    <div id="templatemo_header">
+      <div id="templatemo_special_offers">
+          <p>
+                <span>25%</span> discounts for
+        purchase over $80
+          </p>
+      <a href="subpage.html" style="margin-left: 50px;">Read more...</a>
+        </div>
+        
+        
+        <div id="templatemo_new_books">
+          <ul>
+                <li>Suspen disse</li>
+                <li>Maece nas metus</li>
+                <li>In sed risus ac feli</li>
+            </ul>
+            <a href="subpage.html" style="margin-left: 50px;">Read more...</a>
+        </div>
+    </div> <!-- end of header -->
+    <%= form_with url: "/gallery/search", local: true,method: :post do |form| %>
+  <%= form.label :query, "Search for:" %>
+  <%= form.text_field :query %>
+  <%= form.submit "Search" %>
+<% end %>
+    <div id="templatemo_content">
+       <%= yield %>
+        
+    </div> <!-- end of content -->
+   
+    <div id="templatemo_footer">
+    
+         <a href="subpage.html">Home</a> | <a href="subpage.html">Search</a> | <a href="subpage.html">Books</a> | <a href="#">New Releases</a> | <a href="#">FAQs</a> | <a href="#">Contact Us</a><br />
+        Copyright © 2048 <a href="#"><strong>Your Company Name</strong></a> | <a href="http://www.iwebsitetemplate.com" target="_parent">Website Templates</a> by <a href="http://www.templatemo.com" target="_parent" title="free css templates">Free CSS Templates</a>  </div> 
+    <!-- end of footer -->
+<!--  Free CSS Template www.templatemo.com -->
+</div> <!-- end of container -->
+<div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div>
+
+  </body>
+</html>
